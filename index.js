@@ -1,5 +1,7 @@
 const express = require("express")
 const ip = require("ip")
+var path = require('path')
+var fs = require('fs')
 
 const { json } = require("express/lib/response")
 const app = express()
@@ -16,13 +18,17 @@ app.listen(port, IP, () => {
 app.use(express.static("App"))
 app.use(express.json());
 
-app.post("/ip", (req, res) => {
-    const data = req
-    console.log(`A new user logged in ${req}`);
-    console.log(data);
-    res.json({
-        status: "success",
-        latitude: data.lat,
-        longitude: data.long
-    });
-});
+app.post("/", (req, res) => {
+    console.log(__dirname)
+    // res.sendFile(dir + "/Home.html")
+    // console.log(dir + "/Home.html")
+})
+
+app.post("/login", (req, res) => {
+    console.log(req);
+    res.sendFile(__dirname + "/my.txt");
+})
+
+app.post("/login/admin", (req, res) => {
+    console.log(req);
+})
