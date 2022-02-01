@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            color: #ecf0f1;
+
+        }
+
+        :root {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+
+            display: flex;
+
+            background-color: #34495e;
+            height: 100%;
+
+            position: relative;
+        }
+
+        h1 {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -65%);
+
+            font-size: 100px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -35%);
+        }
+
+        button {
+            height: 35px;
+            width: 180px;
+            margin: 0 25px;
+
+            font-size: large;
+
+            border: none;
+            background-color: transparent;
+
+        }
+
+        button:hover {
+            cursor: pointer;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Local Chat</h1> <br>
+
+    <nav>
+        <button style="margin-right: 2px;">Join the chat!</button>
+        <button style="margin-left: 2px;">Enter as Moderator!</button>
+    </nav>
+</body>
+
+</html>
