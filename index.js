@@ -13,18 +13,9 @@ app.listen(port, IP, () => {
     console.log(`Chat aperta su ${IP}:${port}`)
 })
 
-app.use(express.static("App"))
+app.use(express.static("public"))
 app.use(express.json());
 
-app.post("/", (req, res) => {
-    console.log(__dirname)
-})
-
-app.post("/login", (req, res) => {
-    console.log(req);
-    res.sendFile("");
-})
-
-app.post("/login/admin", (req, res) => {
-    console.log(req);
+app.get("/", (req, res) => {
+    res.send("Hello World!")
 })
