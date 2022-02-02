@@ -1,7 +1,5 @@
 const express = require("express")
 const ip = require("ip")
-var path = require('path')
-var fs = require('fs')
 
 const { json } = require("express/lib/response")
 const app = express()
@@ -20,13 +18,11 @@ app.use(express.json());
 
 app.post("/", (req, res) => {
     console.log(__dirname)
-    // res.sendFile(dir + "/Home.html")
-    // console.log(dir + "/Home.html")
 })
 
 app.post("/login", (req, res) => {
     console.log(req);
-    res.sendFile(__dirname + "/my.txt");
+    res.sendFile("");
 })
 
 app.post("/login/admin", (req, res) => {
