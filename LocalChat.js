@@ -8,24 +8,24 @@ const app = express()
 // "localhost"
 const IPv4 = ip.address()
 const port = 25565
-const IP = "localhost"
+const IP = IPv4
 
-// app.use(express.static(path.join(__dirname, './App/Css')))
+// Importing file
+app.use(express.static(__dirname))
 // app.use(express.json());
 
 app.get("/", (req, res) => {
     res.sendFile('Home.html', {
-        root: path.join(__dirname, './App/')
+        root: path.join(__dirname, './App/Html')
     })
 })
 
 app.listen(port, IP, () => {
-    console.log(`Chat aperta su ${IP}:${port}`)
-    console.log(path.join(__dirname, './App/'))
+    console.log(`Local Chat open at ${IP}:${port}`)
 })
 
 app.get("/login", (req, res) => {
     res.sendFile('Login.html', {
-        root: path.join(__dirname, './App/')
+        root: path.join(__dirname, './App/Html/')
     })
 })
