@@ -1,0 +1,94 @@
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #ecf0f1;
+    margin: 0;
+}
+
+:root {
+    height: 100%;
+}
+
+body {
+    background-color: #34495e;
+    height: 100%;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.Title {
+    font-size: clamp(60px, calc((75vw - 4.5rem) / 7), 150px);
+    margin: 15px 25px;
+    text-align: center;
+    flex-basis: 100%;
+}
+
+/* Message template */
+.message_div {
+    height: 100%;
+}
+
+.message {
+    flex-basis: 100%;
+    padding: 15px;
+    margin: 25px;
+
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    width: clamp(300px, calc(100% - 100px), 550px);
+    border-radius: 15px;
+}
+
+.message_name {
+    text-align: left;
+    font-size: medium;
+    color: #c9c9c9;
+
+}
+
+.message_body {
+    padding: 5px 20px 1px 35px;
+    font-size: x-large;
+
+}
+
+.message_time {
+    text-align: right;
+    font-size: small;
+    color: #c9c9c9;
+
+}
+
+
+/* Online User */
+aside {
+    display: none;
+}
+
+
+
+
+
+
+button {
+    padding: 10px 15px;
+    font-size: 25px;
+    border: none;
+    background-color: transparent;
+}
+
+button:hover {
+    cursor: pointer;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 5px;
+}

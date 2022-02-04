@@ -23,7 +23,7 @@ body {
     height: 100%;
 }
 
-h1 {
+.Title {
     font-size: clamp(60px, calc((75vw - 4.5rem) / 7), 150px);
     text-align: center;
     flex-basis: 100%;

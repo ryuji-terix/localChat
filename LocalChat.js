@@ -29,3 +29,9 @@ app.get("/login", (req, res) => {
         root: path.join(__dirname, './App/Html/')
     })
 })
+
+app.get("/chat", (req, res) => {
+    res.sendFile('Chat.html', {
+        root: path.join(__dirname, './App/Html/')
+    })
+})
