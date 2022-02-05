@@ -1,25 +1,47 @@
 body {
+    content: "";
+}
+
+main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
+    height: 100%;
 }
 
 button {
     padding: 10px 15px;
     font-size: 25px;
+    align-self: flex-end;
 }
 
 @media screen and (max-width: 600px) and (max-height: 900px) {
-    h1 {
+    main h1 {
         margin: 75px 15px 20px 15px;
     }
 }
 
-/* .popup_container {
+/* graying out the rest of the thing */
+div.container {
     position: absolute;
+    width: 100%;
+    height: 100%;
 
-    width: clamp(420px, 75%, 750px);
+    top: 0;
+    left: 0;
+
+    opacity: 35%;
+    filter: grayscale(100%);
+    background-color: var(--darkblue);
+
+    cursor: pointer;
+
+}
+
+footer.login {
+    position: absolute;
+    width: clamp(380px, 75%, 750px);
     height: clamp(100px, 75%, 750px);
 
     left: 50%;
@@ -29,5 +51,42 @@ button {
     box-shadow: var(--shadow);
     background-color: var(--darkblue);
     border-radius: 15px;
+    padding: 25px;
 
-} */
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+
+}
+
+h1.login {
+    font-size: clamp(45px, 60px, 100px);
+    text-align: center;
+    flex-basis: 100%;
+
+}
+
+hr.login {
+    flex-basis: 100%;
+    margin: 15px 12.5%;
+    align-self: flex-start;
+
+
+}
+
+label.login {
+    flex-basis: 100%;
+
+}
+
+input.login {
+    flex-basis: 100%;
+    width: clamp(350px, 80%, 650px);
+
+}
+
+button.login {
+    flex-basis: 100%;
+    align-self: flex-end;
+}

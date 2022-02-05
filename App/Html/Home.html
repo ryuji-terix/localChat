@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Local Chat</title>
     <link rel="icon" type="image/x-icon" href="App/Graphics/LocalChat.ico">
-   
+
     <link rel="stylesheet" href="App/Css/Home.css">
     <link rel="stylesheet" href="App/Css/lb.css">
     <script defer src="App/JavaScript/Home.js"></script>
@@ -21,9 +21,21 @@
 
     </main>
 
-    <div class="popup_container">
+    <div class="container" id="login_container" style="display: none;"> </div>
+
+    <footer class="login noselect" id="login_div" style="display: none;">
+        <h1 class="login">Login</h1>
+        <hr class="login">
+
+        <label class="login" for="login_name">Insert name</label> <br>
+        <input class="login" type="text" id="login_name">
+
+        <label class="login" for="login_password">Insert password</label> <br>
+        <input class="login" type="password" id="login_password">
+
+        <button class="login" type="submit">Enter Chat</button>
         
-    </div>
+    </footer>
     
 </body>
 

@@ -3,7 +3,6 @@ main {
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: center;
-    width: 100%;
 }
 
 /* Message template */
