@@ -6,20 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Local Chat</title>
-    <link rel="stylesheet" href="App/Css/Home.css">
     <link rel="icon" type="image/x-icon" href="App/Graphics/LocalChat.ico">
+   
+    <link rel="stylesheet" href="App/Css/Home.css">
+    <link rel="stylesheet" href="App/Css/lb.css">
     <script defer src="App/JavaScript/Home.js"></script>
 </head>
 
 <body>
-    <h1 class="Title">Local Chat</h1>
-    <button onclick="togglePopup()">Join the chat!</button>
-    <button onclick="togglePopup()">Enter as Moderator</button>
+    <main class="noselect">
+        <h1 class="title">Local Chat</h1>
+        <button onclick="togglePopup()">Join the chat!</button>
+        <button onclick="togglePopup(true)">Enter as Moderator</button>
 
-    <div class="popup_container displayPopup">
-        <h1 class="popup displayPopup">Ciao</h1>
+    </main>
+
+    <div class="popup_container">
+        
     </div>
-
+    
 </body>
 
 </html>
