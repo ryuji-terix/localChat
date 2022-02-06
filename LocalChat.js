@@ -45,27 +45,32 @@ app.get("/", (req, res) => {
 })
 
 app.post("/login", (req, res) => {
-    credential.find({ user: req.body.user }, (e, doc) => {
-        if (equals(doc, blankArray)) {
+    // credential.find({ user: req.body.user }, (e, doc) => {
+        // if (equals(doc, blankArray)) {
             credential.insert(req.body)
             console.log(req.body)
 
-            res.json({
+            res.send({
                 user: req.body.user,
                 password: req.body.password,
                 time: req.body.time
             })
-            res.status(201) //Object created
-        } else {
-            res.status(400) //Bad Request
-            console.error(`User (${req.body.user}) already exist`)
+            // res.status(201)
 
-            res.send(`User "${req.body.user}" already exist`)
+            //Object created
 
-            res.status(201)
-        }
-    })
+
+    //     } else {
+    //         res.status(400) //Bad Request
+    //         console.error(`User (${req.body.user}) already exist`)
+
+    //         res.send(`User "${req.body.user}" already exist`)
+
+    //         res.status(201)
+    //     }
+    // )
 })
+// })
 
 app.get("/chat", (req, res) => {
     res.sendFile('Chat.html', {
@@ -81,8 +86,8 @@ app.get("/chat", (req, res) => {
 
 // req.query.password = bcrypt.hashSync(req.query.password, 10)
 // app.get("/alldb", (req, res) => {
-//     database.find({}, (err, data) => {
-//         err ? res.end() : ""
-//         res.json(data)
-//     })
-// })
+    //     database.find({}, (err, data) => {
+        //         err ? res.end() : ""
+        //         res.json(data)
+        //     })
+        // })
