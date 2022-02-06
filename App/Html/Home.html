@@ -14,29 +14,27 @@
 </head>
 
 <body>
-    <main class="noselect">
+    <main class="noselect" id="main" style="display: flex;">
         <h1 class="title">Local Chat</h1>
         <button onclick="togglePopup()">Join the chat!</button>
         <button onclick="togglePopup(true)">Enter as Moderator</button>
 
     </main>
 
-    <div class="container" id="login_container" style="display: none;"> </div>
+    <div class="login container" id="login_container" style="display: none;"> </div>
 
-    <footer class="login noselect" id="login_div" style="display: none;">
+    <form autocomplete="off" class="login noselect" id="login_form" style="display: none;">
         <h1 class="login">Login</h1>
         <hr class="login">
+        <label class="login" for="name">Insert name</label> <br>
+        <input name="name" minlength="3" maxlength="15" placeholder="Bob_Ross69" required class="login" type="text" id="login_name">
 
-        <label class="login" for="login_name">Insert name</label> <br>
-        <input class="login" type="text" id="login_name">
-
-        <label class="login" for="login_password">Insert password</label> <br>
-        <input class="login" type="password" id="login_password">
-
-        <button class="login" type="submit">Enter Chat</button>
+        <label class="login" for="password" id="login_password_label" style="display: none;">Insert password</label> <br>
+        <input name="password" minlength="10" maxlength="20" placeholder="#IlovepaintingThings0" class="login" type="password" id="login_password" style="display: none;">
         
-    </footer>
-    
+        <button class="login" id="submit" type="submit">Enter Chat</button>
+    </form>
+
 </body>
 
 </html>

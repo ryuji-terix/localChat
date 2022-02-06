@@ -4,11 +4,14 @@
 }
 
 :root {
-    --shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     --darkblue: #2c3e50;
     --lightblue: #34495e;
     --softwhite: #ecf0f1;
-    
+
+    --shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    --semiTrasparent: rgba(0.0, 0.0, 0.0, 0.1);
+    --insetShadow: inset rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
     height: 100%;
 }
 
@@ -17,6 +20,7 @@ body {
     height: 100%;
 }
 
+/* button stile */
 button {
     border: none;
     background-color: transparent;
@@ -28,6 +32,44 @@ button:hover {
     border-radius: 5px;
 }
 
+button:active {
+    box-shadow: var(--insetShadow);
+}
+
+
+/* input style */
+input {
+    outline: none;
+    background-color: var(--semiTrasparent);
+    box-shadow: var(--shadow);
+
+}
+
+input.login:hover {
+    box-shadow: var(--insetShadow)
+}
+
+input.login:focus-visible {
+    box-shadow: var(--insetShadow)
+}
+
+input.login:focus {
+    border: 1.5px solid var(--softwhite);
+}
+
+input.login::placeholder {
+    opacity: 78%;
+}
+
+input.login:valid {
+    border: 2px solid rgb(0, 255, 0);
+}
+
+input.login:invalid {
+    border: 2px solid rgb(255, 0, 0);
+}
+
+/* imported */
 .noselect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;

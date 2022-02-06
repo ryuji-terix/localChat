@@ -1,6 +1,4 @@
-body {
-    content: "";
-}
+/* body {} */
 
 main {
     display: flex;
@@ -23,7 +21,7 @@ button {
 }
 
 /* graying out the rest of the thing */
-div.container {
+div.login.container {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -39,51 +37,74 @@ div.container {
 
 }
 
-footer.login {
+form.login {
     position: absolute;
-    width: clamp(380px, 75%, 750px);
-    height: clamp(100px, 75%, 750px);
-
+    width: clamp(350px, 35%, 450px);
+    height: clamp(375px, 45%, 400px);
+    
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-
+    
     box-shadow: var(--shadow);
     background-color: var(--darkblue);
     border-radius: 15px;
+    
     padding: 25px;
-
-    display: flex;
+    
     justify-content: center;
-    align-content: center;
     flex-wrap: wrap;
+}
+
+form.login.limit {
+    height: clamp(175px, 45%, 300px);
 
 }
 
 h1.login {
     font-size: clamp(45px, 60px, 100px);
     text-align: center;
+    align-self: flex-start;
     flex-basis: 100%;
-
+    row-gap: 25px;
+    
 }
 
 hr.login {
     flex-basis: 100%;
     margin: 15px 12.5%;
     align-self: flex-start;
-
-
+    
 }
 
 label.login {
+    margin: 15px 25px 10px 25px;
     flex-basis: 100%;
-
+    font-size: 20px; 
+    height: fit-content;
 }
 
 input.login {
+    width: clamp(150px, 60%, 350px);
+    margin: 0 25px 15px 25px;
+    border-radius: 25px;
+    padding: 5px 25px;
     flex-basis: 100%;
-    width: clamp(350px, 80%, 650px);
+    height: 35px;
+    border: none;
+    
+}
 
+input.login:focus {
+    box-shadow: var(--insetShadow);
+    border: none;
+}
+
+.login.error {
+    color: red;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 25px;
 }
 
 button.login {
