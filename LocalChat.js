@@ -21,10 +21,10 @@ const app = express()
 // "localhost"
 const IPv4 = ip.address()
 const port = 25565
-const IP = IPv4
+const IP = "localhost"
 
 app.listen(port, IP, () => {
-    console.log(`Local Chat open at ${IP}:${port}`)
+    console.log(`Local Chat open at http://${IP}:${port}/`)
 })
 
 
