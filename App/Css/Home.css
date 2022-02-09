@@ -18,6 +18,22 @@ button {
     main h1 {
         margin: 75px 15px 20px 15px;
     }
+
+    button {
+        flex-basis: 100%;
+    }
+
+    form.login {
+        width: clamp(150px, 75%, 450px);
+        height: clamp(175px, 50%, 400px);
+        
+    }
+
+    form.login.limit {
+        width: clamp(150px, 75%, 450px);
+        height: clamp(175px, 45%, 300px);
+    
+    }
 }
 
 /* graying out the rest of the thing */

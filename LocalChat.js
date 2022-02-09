@@ -21,7 +21,7 @@ const app = express()
 // "localhost"
 const IPv4 = ip.address()
 const port = 25565
-const IP = "localhost"
+const IP = IPv4
 
 app.listen(port, IP, () => {
     console.log(`Local Chat open at http://${IP}:${port}/`)
@@ -29,7 +29,7 @@ app.listen(port, IP, () => {
 
 
 
-// Importing file
+// NOTE: Importing file
 app.use(express.static(__dirname))
 credential.loadDatabase()
 // message.loadDatabase()
