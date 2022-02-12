@@ -3,32 +3,15 @@ const form = document.getElementById("login_form");
 const main = document.getElementById("main");
 const psw_label = document.getElementById("login_password_label");
 const psw_login = document.getElementById("login_password");
-const name_login = document.getElementById("login_name");
 const subimt = document.getElementById("submit");
 const error = document.getElementById("error_login");
-var admin = false;
 
 l_c.addEventListener("click", () => {
     togglePopup();
 })
 
-
-togglePopup = (admin) => {
-    if (admin) {
-        psw_label.style.display = "block";
-        psw_login.style.display = "block";
-        form.classList.remove("limit");
-
-        psw_login.setAttribute("required", "");
-        var admin = true;
-    } else {
-        psw_label.style.display = "none";
-        psw_login.style.display = "none";
-        form.classList.add("limit");
-
-        psw_login.removeAttribute("required");
-        var admin = false;
-    }
+togglePopup = (register) => {
+    register === true ? window.location.href = "/register" : ""
 
     if (l_c.style.display === "none") {
         form.style.display = "flex";
@@ -39,9 +22,16 @@ togglePopup = (admin) => {
         form.style.display = "none";
         l_c.style.display = "none";
         main.style.display = "flex";
+
+        for (let index = 0; index < form.elements.length; index++) {
+            form.elements[index].value = "";
+        }
+
     }
 }
 
+
+// TODO: request for login
 form.addEventListener("submit",
     async function sendCredential(event) {
         event.preventDefault();
