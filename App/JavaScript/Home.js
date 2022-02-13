@@ -32,31 +32,31 @@ togglePopup = (register) => {
 
 
 // TODO: request for login
-form.addEventListener("submit",
-    async function sendCredential(event) {
-        event.preventDefault();
+// form.addEventListener("submit",
+//     async function sendCredential(event) {
+//         event.preventDefault();
 
-        userN = form.elements["name"].value
-        userP = form.elements["password"].value
+//         userN = form.elements["name"].value
+//         userP = form.elements["password"].value
 
-        const data = {
-            user: userN,
-            password: userP,
-            time: Date.now(),
-        };
+//         const data = {
+//             user: userN,
+//             password: userP,
+//             time: Date.now(),
+//         };
 
-        const options = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        };
+//         const options = {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify(data)
+//         };
 
-        const response = await fetch("/login", options);
-        const json = await response.json();
+//         const response = await fetch("/login", options);
+//         const json = await response.json();
 
-        console.log(json);
-        // await Promise.resolve()
-    }
-)
+//         console.log(json);
+//         // await Promise.resolve()
+//     }
+// )

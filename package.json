@@ -4,16 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon LocalChat.js"
+    "devStart": "nodemon ./Server/LocalChat.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "dotenv": "^16.0.0",
     "express": "^4.17.2",
-    "ip": "^1.1.5",
-    "nedb": "^1.8.0"
+    "dotenv": "^16.0.0",
+    "nedb": "^1.8.0",
+    "ip": "^1.1.5"
   }
 }

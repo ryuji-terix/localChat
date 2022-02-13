@@ -1,0 +1,27 @@
+@Path = http://172.20.10.7:25565
+
+
+### create user
+POST {{Path}}/users
+Content-Type: application/json
+
+{
+    "name": "test",
+    "password": "validpassword"
+}
+
+
+
+### get user
+GET {{Path}}/users
+
+
+
+### login
+POST {{Path}}/users/login
+Content-Type: application/json
+
+{
+    "name": "test",
+    "password": "validpassword"
+}
