@@ -1,8 +1,10 @@
-@Path = http://172.20.10.7:25565
+@Port = 25565
+@Path = http://172.20.10.7:{{Port}}
+@Path2 = http://10.66.99.180:{{Port}}
 
 
 ### create user
-POST {{Path}}/users
+POST {{Path2}}/users
 Content-Type: application/json
 
 {
@@ -13,12 +15,12 @@ Content-Type: application/json
 
 
 ### get user
-GET {{Path}}/users
+GET {{Path2}}/users
 
 
 
 ### login
-POST {{Path}}/users/login
+POST {{Path2}}/users/login
 Content-Type: application/json
 
 {
