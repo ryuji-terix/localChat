@@ -5,56 +5,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>LocalChat | Register</title>
     
     <link rel="icon" type="image/x-icon" href="App/Graphics/LocalChat.ico">
     <link rel="stylesheet" href="App/Css/Register.css">
     <link rel="stylesheet" href="App/Css/lb.css">
     <script defer src="App/JavaScript/Register.js"></script>
-
-    <!-- * Style thing -->
-    <link rel="stylesheet" href="/App/Css/lb.css">
-    <style>
-        * {
-            flex-basis: 100%;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            text-align: center;
-            /* cursor: alias; */
-        }
-
-        body {
-            display: flex;
-            justify-content: center;
-            align-content: center;
-            flex-wrap: wrap;
-            width: 100%;
-            height: 100%;
-        }
-
-        div {
-            font-size: clamp(15px, calc((75vw - 9rem) / 7), 40px);
-            color: #bdc3c7;
-        }
-
-        #error {
-            color: #ec3f2c;
-            text-shadow: var(--shadow);
-        }
-    </style>
-
 </head>
 
 <body class="noselect">
-    <h1 class="title">I'm the register page</h1>
-    <div>Welcome <span id="error">Teo</span></div>
-</body>
+    <form autocomplete="off" class="login" id="login_form" action="/user" method="POST">
+        <h1 class="login">Register</h1> <hr class="login">
 
-<!-- <script>
-    document.addEventListener("click", () => {
-        window.location.replace("/")
-    })
-</script> -->
+        <label class="login" for="name">Choose name</label> <br>
+        <input name="name" minlength="3" maxlength="15" placeholder="Bob_Ross69" required class="login" type="text" id="login_name">
+
+        <label class="login" for="password" id="login_password_label">Choose password</label> <br>
+        <input name="password" minlength="10" maxlength="20" placeholder="#IlovepaintingThings09" required class="login" type="password" id="login_password">
+
+        <button class="login" id="submit" type="submit">Enter Chat</button>
+    </form>
+
+</body>
 
 </html>
