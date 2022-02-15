@@ -6,9 +6,9 @@ const Datastore = require('nedb')
 const path = require('path')
 const ip = require('ip')
 
-
 // * Variable
-const localChatDir = path.dirname(__dirname)
+const localChatDir = func.localChatDir()
+require('dotenv').config({ path: path.join(localChatDir, '/Server/Util/.env') })
 
 
 // * Setup thingy
@@ -38,24 +38,15 @@ app.listen(port, IP, () => {
 // * Front page
 app.get('/', (req, res) => {
     console.log(`${req.headers['x-forwarded-for'] || req.connection.remoteAddress} logged`)
-    res.sendFile('Home.html', {
-        root: path.join(localChatDir, './App/Html')
-    })
+    func.sendFile(res, 'Home.html')
+    
 })
 
 
 // * Login part
 app.get('/users', (req, res) => {
-    credential.find({ }, (err, doc) => {
-        if (err !== null) {
-            res.status(500).sendFile('/errorHandling/error 500.html', {
-                root: path.join(localChatDir, './App/Html/')
-            })
-            console.error(`Database error "credential": ${err}`)
-        } else {
-            func.isArrEqual(doc, []) ? res.send("empty") : res.send(doc)
-        }
-    })
+    let doc = func.getUserby(res, {})
+    func.isArrEqual(doc, []) ? res.send("empty") : res.send(doc)
 })
 
 
@@ -63,89 +54,51 @@ app.get('/users', (req, res) => {
 // ? create user
 app.post('/user', async (req, res) => {
     try {
-
-
-        // ! FINDING A VARIABLE THAT WORK
-        var nameDifferent
-        stuff = () => {
-            credential.find({ name: req.body.name }, (err, doc) => {
-                if (err !== null) {
-                    res.status(500).sendFile('/errorHandling/error 500.html', {
-                        root: path.join(localChatDir, './App/Html/')
-                    })
-                    console.error(`Database error "credential": ${err}`)
-                } else {
-                    nameDifferent = func.isArrEqual(doc, []) ? false : true
-                }
-            })
-        
-        return nameDifferent
-    }
-
         if (req.body.name === undefined ||
             req.body.password === undefined ||
             !func.validPassword(req.body.password)) {
-                res.status(400).sendFile('/errorHandling/error 400.html', {
-                    root: path.join(localChatDir, './App/Html/')
-                })
-            } else if ( await stuff() ) {
-                res.status(409).sendFile('/errorHandling/error 409.html', {
-                    root: path.join(localChatDir, './App/Html/')
-            })} else {
-                    console.log(`${ stuff()} 2`)    // ! RETURN UNDEFINED 2
-                    let user = {
+                func.statusExport(res, 400)
+                
+            } else if ( func.isArrEqual(func.getUserby(res, { name: req.body.name }), []) ? false : true ) {
+                func.statusExport(res, 409)
+                
+            } else {
+                let user = {
                     name: req.body.name,
                     password: await bcrypt.hash(req.body.password, 10),
                     time: Date.now()
                 }
-            
-            credential.insert(user, (err, newDoc) => {
-                if (err !== null) {
-                    res.status(500).sendFile('/errorHandling/error 500.html', {
-                        root: path.join(localChatDir, './App/Html/')
-                    })
-                } else {
-                    res.status(201).send()
-                    console.log(`New user: ${JSON.stringify(newDoc)}`)
-                }
+                func.newUser(user)
                 
-            })
-        }
-        
+            }
+            
     } catch {
-        res.status(500).sendFile('/errorHandling/error 500.html', {
-            root: path.join(localChatDir, './App/Html/')
-        })
+        func.statusExport(res, 500)
     }
-    
+        
 })
-
-// ? login
-app.post("/user/login", (req, res) => {
-    credential.find({ name: req.body.name }, async (err, doc) => {
-        if (err !== null) {
-            res.status(500).sendFile('/errorHandling/error 500.html', {
-                root: path.join(localChatDir, './App/Html/')
-            })
-            console.error(`Database error "credential": ${err}`)
-        } else {
-            if (func.isArrEqual(doc, [])) {
-                res.status(400).sendFile('/errorHandling/error 400.html', {
-                    root: path.join(localChatDir, './App/Html/')
-                })
+    
+    
+    // ? login
+    app.post("/user/login", (req, res) => {
+        credential.find({ name: req.body.name }, async (err, doc) => {
+            if (err !== null) {
+                func.statusExport(res, 500)
+                console.error(`Database error "credential": ${err}`)
+                
             } else {
-                try {
-                    // TODO passing "credential to the page"
-                    await bcrypt.compare(req.body.password, doc[0].password) ? res.redirect("/Chat")
-                    : res.status(401).sendFile('/errorHandling/error 401.html', {
-                        root: path.join(localChatDir, './App/Html')
-                    })
+                if (func.isArrEqual(doc, [])) {
+                    func.statusExport(res, 400)
                     
-                } catch {
-                    res.status(500).sendFile('/errorHandling/error 500.html', {
-                        root: path.join(localChatDir, './App/Html/')
-                    })
-                }
+                } else {
+                    try {
+                        // TODO passing "credential to the page"
+                        await bcrypt.compare(req.body.password, doc[0].password) ? res.redirect("/Chat")
+                        : func.statusExport(res, 401)
+                        
+                    } catch {
+                        func.statusExport(res, 500)
+                    }
                 
             }
         }
@@ -156,21 +109,18 @@ app.post("/user/login", (req, res) => {
 
 // ? page for the registering
 app.get('/register', (req, res) => {
-    res.sendFile('Register.html', {
-        root: path.join(localChatDir, './App/Html')
-    })
+    func.sendFile(res, 'Register.html')
 })
 
 
 // * Get method
 // ? send chat page
 app.get("/chat", (req, res) => {
-    res.sendFile('Chat.html', {
-        root: path.join(localChatDir, './App/Html')
-    })
+    func.sendFile(res, 'Chat.html')
 })
+
 // // app.get('/chat/:id', (req, res) => {
-    // //     req.params.id === '' ?
+// //     req.params.id === '' ?
 // //         res.sendFile('/errorHandling/error 401.html', {
 // //             root: path.join(localChatDir, './App/Html')
 // //         }) :
@@ -196,13 +146,11 @@ app.get("/chat", (req, res) => {
 
 // ! Error Handling
 // // app.get('/chat', (req, res) => {
-// //     res.status(401).sendFile('/errorHandling/error 401.html', {
-// //         root: path.join(localChatDir, './App/Html/')
-// //     })
-// // })
-
+    // //     res.status(401).sendFile('/errorHandling/error 401.html', {
+        // //         root: path.join(localChatDir, './App/Html/')
+        // //     })
+        // // })
+        
 app.get('*', (req, res) => {
-    res.status(404).sendFile('/errorHandling/error 404.html', {
-        root: path.join(localChatDir, './App/Html/')
-    })
+    func.statusExport(res, 404)
 })
