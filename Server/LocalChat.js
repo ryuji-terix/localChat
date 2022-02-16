@@ -1,138 +1,51 @@
 // * Importing libraries
 const fun = require("./Util/function")
-const express = require('express')
-const bcrypt = require('bcryptjs')
+const WebSocket = require("ws")
+const http = require("http")
+const fs = require("fs")
+
+// const server = http.createServer((req, res) => {
+//     res.statusCode = 200
+//     res.setHeader("content-type", "text/plain")
+//     fs.readFile(fun.localChatDir() + '/App/Chat.html', null, function (error, data) {
+//         if (error) {
+//             res.writeHead(404)
+//             res.write('Whoops! File not found!')
+//         } else {
+//             res.write(data)
+//         }
+//         res.end()
+//     })
+// })
 
 
-// * Variable
-const localChatDir = fun.localChatDir()
 
+http.createServer((req, res) => {
+    res.writeHead(200, {
+        'Content-Type': 'text/html' })
 
-// * Setup thingy
-const { json } = require('express/lib/response')
-const app = express()
+    fs.readFile(fun.localChatDir() + '/App/Chat.html', null, function (error, data) {
+        if (error) {
+            res.writeHead(404)
+            res.write('Whoops! File not found!')
 
-
-// * File management
-app.use(express.static(localChatDir))
-app.use(express.json())
-fun.initDb()
-
-
-// * Startup
-app.listen(fun.IP("port"), fun.IP("ip"), () => {
-    console.log(`Local Chat open at http://${fun.IP()}/`)
-})
-
-
-// * Front page
-app.get('/', (req, res) => {
-    console.log(`${req.headers['x-forwarded-for'] || req.connection.remoteAddress} logged`)
-    fun.sendFile(res, 'Home.html')
-    
-})
-
-
-// * Get user
-app.get('/users', (req, res) => {
-    console.log(fun.getUserby(res, { }))
-    // fun.isArrEqual(doc, []) ? res.send("empty") : res.send(doc)
-})
-
-
-// ? create user
-app.post('/user', async (req, res) => {
-    try {
-        if (req.body.name === undefined ||
-            req.body.password === undefined ||
-            !fun.validPassword(req.body.password)) {
-                fun.statusExport(res, 400)
-                
-            } else if ( fun.isArrEqual(fun.getUserby(res, { name: req.body.name }), []) ? false : true ) {
-                fun.statusExport(res, 409)
-                
-            } else {
-                let user = {
-                    name: req.body.name,
-                    password: await bcrypt.hash(req.body.password, 10),
-                    time: Date.now()
-                }
-                fun.newUser(user)
-                
-            }
-            
-    } catch {
-        fun.statusExport(res, 500)
-    }
-        
-})
-    
-    
-    // ? login
-app.post("/user/login", async (req, res) => {
-    let doc = fun.getUserby(res, { name: req.body.name })
-    if (fun.isArrEqual(doc, [])) {
-        fun.statusExport(res, 400)
-        
-    } else {
-        try {
-            // TODO passing "credential to the page"
-            await bcrypt.compare(req.body.password, doc[0].password)
-            ? res.redirect("/Chat") : fun.statusExport(res, 401)
-            
-        } catch {
-            fun.statusExport(res, 500)
+        } else {
+            res.write(data)
 
         }
-    
-    }   
+        res.end()
+    })
+}).listen(fun.IP("port"), fun.IP("ip"), () => {
+    console.log(`server running at http://${fun.IP()}/`)
+    fun.initDb()
 })
 
+// const Sserver = new WebSocket.Server({ port: fun.IP("port") })
 
-// ? page for the registering
-app.get('/register', (req, res) => {
-    fun.sendFile(res, 'Register.html')
-})
+// Sserver.on("connection", socket => {
+//     socket.on("message", message => {
 
+//         socket.send(`message: ${message}`)
+//     })
+// })
 
-// * Get method
-// ? send chat page
-app.get("/chat", (req, res) => {
-    fun.sendFile(res, 'Chat.html')
-})
-
-// // app.get('/chat/:id', (req, res) => {
-// //     req.params.id === '' ?
-// //         res.sendFile('/errorHandling/error 401.html', {
-// //             root: path.join(localChatDir, './App/Html')
-// //         }) :
-
-// //         res.sendFile('Chat.html', {
-// //             root: path.join(localChatDir, './App/Html')
-// //         })
-// // })
-
-
-// * Post method
-// // app.post('/login', (req, res) => {
-// //     credential.insert(req.body)
-// //     console.log(req.body)
-
-// //     res.send({
-// //         user: req.body.user,
-// //         password: req.body.password,
-// //         time: req.body.time
-// //     })
-// // })
-
-
-// ! Error Handling
-// // app.get('/chat', (req, res) => {
-    // //     res.status(401).sendFile('/errorHandling/error 401.html', {
-        // //         root: path.join(localChatDir, './App/Html/')
-        // //     })
-        // // })
-        
-app.get('*', (req, res) => {
-    fun.statusExport(res, 404)
-})
