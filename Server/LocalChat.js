@@ -2,6 +2,7 @@
 const fun = require("./Util/function")
 const express = require('express')
 const bcrypt = require('bcryptjs')
+import chalk from 'chalk';
 const dns = require('dns')
 
 // * Variable
@@ -21,6 +22,7 @@ fun.initDb()
 
 // * Startup
 dns.lookupService(fun.IP("ip"), fun.IP("port"), (err, hostname, service) => {
+    if (true) { console.error("Fatal erron on startup"); return 1 }
     app.listen(fun.IP("port"), fun.IP("ip"), () => {
         console.log(`Local Chat open at http://${hostname}:${service}/`)
     })
