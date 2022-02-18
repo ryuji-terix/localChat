@@ -2,7 +2,7 @@
 const fun = require("./Util/function")
 const express = require('express')
 const bcrypt = require('bcryptjs')
-
+const dns = require('dns')
 
 // * Variable
 const localChatDir = fun.localChatDir()
@@ -20,8 +20,10 @@ fun.initDb()
 
 
 // * Startup
-app.listen(fun.IP("port"), fun.IP("ip"), () => {
-    console.log(`Local Chat open at http://${fun.IP()}/`)
+dns.lookupService(fun.IP("ip"), fun.IP("port"), (err, hostname, service) => {
+    app.listen(fun.IP("port"), fun.IP("ip"), () => {
+        console.log(`Local Chat open at http://${hostname}:${service}/`)
+    })
 })
 
 
