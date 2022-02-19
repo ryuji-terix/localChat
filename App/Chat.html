@@ -11,21 +11,30 @@
     <link rel="stylesheet" href="App/Css/Chat.css">
     <link rel="stylesheet" href="App/Css/lb.css">
 
+    <script defer src="/socket.io/socket.io.js"></script>
     <script defer src="/App/Chat.js"></script>
 </head>
 
 <body>
-    <h1 class="title noselect">Local Chat</h1>
+    <nav class="top">
+        <p class="user">user: <span id="username"></span></p>
+        <h1 class="title noselect">Local Chat</h1>
+    </nav>
     
-    <ul>
-        
+    <ul class="msg_container" id="msg_container">
+        <li class="msg">
+            <p class="msg_author">Teo</p>
+            <p class="msg_body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum natus autem consectetur. Sequi, optio cupiditate dignissimos dolor quisquam quis. Iusto obcaecati ratione inventore quam perferendis sed expedita! Placeat, quis consectetur?</p>
+            <p class="msg_time"> 15:25</p>
+        </li>
     </ul>
     
-    <input placeholder="message">
-    <button>send</button>
+    <nav class="btm">
+        <input class="sendMsg" id="input" placeholder="message">
+        <button class="sendMsg" id="btn">send</button>
+    </nav>
     
     
-    <script src="/socket.io/socket.io.js"></script>
 </body>
 
 </html>

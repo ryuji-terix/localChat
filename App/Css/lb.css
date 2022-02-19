@@ -10,6 +10,7 @@
     --silver: #bdc3c7;
 
     --shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    --shadow-rev: rgba(149, 157, 165, 0.2) 0px -8px 24px;
     --semiTrasparent: rgba(0.0, 0.0, 0.0, 0.1);
     --insetShadow: inset rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
@@ -41,24 +42,26 @@ button:active {
 /* input style */
 input {
     outline: none;
+    border: none;
     background-color: var(--semiTrasparent);
     box-shadow: var(--shadow);
+    border-radius: 5px;
 
 }
 
-input.login:hover {
+input:hover {
     box-shadow: var(--insetShadow)
 }
 
-input.login:focus-visible {
+input:focus-visible {
     box-shadow: var(--insetShadow)
 }
 
-input.login:focus {
+input:focus {
     border: 1.5px solid var(--softwhite);
 }
 
-input.login::placeholder {
+input::placeholder {
     opacity: 78%;
 }
 
@@ -66,7 +69,7 @@ input.login:valid {
     border: 2px solid rgb(0, 255, 0);
 }
 
-input.login:invalid {
+input:invalid {
     border: 2px solid rgb(255, 0, 0);
 }
 

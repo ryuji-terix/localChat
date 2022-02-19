@@ -1,57 +1,104 @@
-main {
+/* 35ch */
+
+body, ul {
     display: flex;
     flex-wrap: wrap;
-    align-content: flex-start;
     justify-content: center;
 }
 
-/* Message template */
-.message_div {
-    height: 100%;
+p.user {
+    flex-basis: 100%;
+    height: 2ch;
+    margin: 5px 35px;
+    text-align: end;
 }
 
-.message {
+h1.title {
+    align-self: flex-start;
+    max-height: 80px;
+    font-size: clamp(60px, calc((75vw - 4.5rem) / 7), 80px);
+
+}
+
+/* Message template */
+ul.msg_container {
+    align-self: flex-start;
+    /* width: clamp(55px, calc((75vw - 5rem) / 7), 145px); */
+    list-style: none;
+    overflow-y: scroll;
     flex-basis: 100%;
+    width: 100%;
+    padding: 0;
+    width: 75%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+li.msg {
     padding: 15px;
     margin: 25px;
-
+    
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    width: clamp(300px, calc(100% - 100px), 550px);
+    /* width: clamp(75ch, 25%, 75ch); */
     border-radius: 15px;
+    flex-basis: 100%;
+    width: 75%;
+    
+    list-style: none;
 }
 
-.message_name {
+p.msg_author {
     text-align: left;
-    font-size: medium;
+    font-size: xx-large;
     color: #c9c9c9;
 
 }
 
-.message_body {
+p.msg_body {
     padding: 5px 20px 1px 35px;
+    /* width: 45ch; */
+    width: 20ch;
     font-size: x-large;
 
 }
 
-.message_time {
+p.msg_time {
     text-align: right;
-    font-size: small;
+    font-size: x-large;
     color: #c9c9c9;
 
 }
 
-
-/* Online User */
-aside {
-    display: none;
+nav {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    padding: 20px 5px 25px;
+    
 }
 
+nav.top {
+    align-self: flex-start;
+    box-shadow: var(--shadow);
+    height: clamp(40px, 50px, 60px);
+    height: 100px;
+    flex-wrap: wrap;
+    
+}
 
+nav.btm {
+    flex-wrap: nowrap;
+    height: 50px;
+    align-self: flex-end;
+    box-shadow: var(--shadow-rev);
 
+}
 
-
-
-button {
+button.sendMsg {
     padding: 10px 15px;
     font-size: 25px;
     border: none;
@@ -62,4 +109,10 @@ button:hover {
     cursor: pointer;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     border-radius: 5px;
+}
+
+input.sendMsg {
+    width: 75%;
+    margin: 0 15px;
+    padding-left: 15px;
 }
