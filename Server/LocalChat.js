@@ -1,51 +1,25 @@
 // * Importing libraries
-const fun = require("./Util/function")
-const WebSocket = require("ws")
-const http = require("http")
-const fs = require("fs")
-
-// const server = http.createServer((req, res) => {
-//     res.statusCode = 200
-//     res.setHeader("content-type", "text/plain")
-//     fs.readFile(fun.localChatDir() + '/App/Chat.html', null, function (error, data) {
-//         if (error) {
-//             res.writeHead(404)
-//             res.write('Whoops! File not found!')
-//         } else {
-//             res.write(data)
-//         }
-//         res.end()
-//     })
-// })
+const WebSocket = require('ws')
+const express = require('express')
+const http = require('http').createServer()
 
 
-
-http.createServer((req, res) => {
-    res.writeHead(200, {
-        'Content-Type': 'text/html' })
-
-    fs.readFile(fun.localChatDir() + '/App/Chat.html', null, function (error, data) {
-        if (error) {
-            res.writeHead(404)
-            res.write('Whoops! File not found!')
-
-        } else {
-            res.write(data)
-
-        }
-        res.end()
-    })
-}).listen(fun.IP("port"), fun.IP("ip"), () => {
-    console.log(`server running at http://${fun.IP()}/`)
-    fun.initDb()
+// * Declaring const
+const io = require('socket.io')(http, {
+    cors: { origin: '*' }
 })
 
-// const Sserver = new WebSocket.Server({ port: fun.IP("port") })
 
-// Sserver.on("connection", socket => {
-//     socket.on("message", message => {
+// * Initalise
+io.on('connection', (socket) => {
+    console.log('A connection')
 
-//         socket.send(`message: ${message}`)
-//     })
-// })
+    socket.on('message', (message) => {
+        console.log(message)
+        io.emit('message', `${socket.id.substr(0,2)} said ${message}`)
+    })
+})
 
+http.listen(25565, () => {
+    console.log('Server on http://localhost:25565/')
+})

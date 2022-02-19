@@ -1,9 +1,14 @@
-const socket = new WebSocket("ws://localhost:25565")
+const socket = io('ws://localhost:25565')
 
-socket.onmessage = ({ data }) => {
-    console.log("Message from server", data)
-};
+socket.on('message', text => {
+    const el = document.createElement('li');
+    el.innerHTML = text
+    document.querySelector('ul').appendChild(el)
 
-document.querySelector("button").onclick = () => {
-    socket.send("hello");
+})
+
+document.querySelector('button').onclick = () => {
+    const text = document.querySelector('input').value
+    socket.emit('message', text)
+    
 }

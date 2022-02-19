@@ -4,15 +4,17 @@
   "description": "",
   "main": "LocalChat.js",
   "scripts": {
-    "dev": "nodemon LocalChat.js",
+    "dev": "nodemon ./Server/LocalChat.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.3",
     "ip": "^1.1.5",
     "nedb": "^1.8.0",
+    "socket.io": "^4.4.1",
     "ws": "^8.5.0"
   }
 }
