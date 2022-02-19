@@ -1,7 +1,11 @@
-const socket = io('ws://localhost:25565')
+const socket = io()
+
+socket.on('connect', data => {
+    socket.emit('join', 'Hello World from client')
+})
 
 socket.on('message', text => {
-    const el = document.createElement('li');
+    const el = document.createElement('li')
     el.innerHTML = text
     document.querySelector('ul').appendChild(el)
 
@@ -10,5 +14,5 @@ socket.on('message', text => {
 document.querySelector('button').onclick = () => {
     const text = document.querySelector('input').value
     socket.emit('message', text)
-    
+
 }
