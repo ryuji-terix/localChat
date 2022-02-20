@@ -53,6 +53,11 @@ h1.title {
 
 }
 
+/* <li class="msg">
+    <p class="msg_author">Teo</p>
+    <p class="msg_body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum natus autem consectetur. Sequi, optio cupiditate dignissimos dolor quisquam quis. Iusto obcaecati ratione inventore quam perferendis sed expedita! Placeat, quis consectetur?</p>
+    <p class="msg_time"> 15:25</p>
+</li> */
 
 
 /* * Message template */
@@ -63,6 +68,7 @@ ul.msg_container {
     width: 100%;
     padding: 0;
     width: 75%; 
+
 }
 
 ul.msg_container:empty {
@@ -80,6 +86,7 @@ li.msg {
     border-radius: 15px;
     flex-basis: 100%;
     width: 75%;
+
     
     list-style: none;
 }
@@ -97,9 +104,13 @@ p.msg_author {
 
 p.msg_body {
     padding: 5px 20px 1px 35px;
-    /* width: 45ch; */
-    width: 20ch;
+    width: 35ch;
     font-size: x-large;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    
+
     
 }
 
@@ -109,8 +120,6 @@ p.msg_time {
     color: #c9c9c9;
     
 }
-
-
 
 
 /* * BOTTOM Navbar */
@@ -144,4 +153,6 @@ input.sendMsg {
 
 input.sendMsg {
     font-size: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

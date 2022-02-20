@@ -13,7 +13,7 @@ document.querySelector('button').onclick = () => {
 
 window.onload = () => {
     getMessage((msg) => msg.forEach(el => addMessage(el)))
-
+    setUser()
 }
 
 socket.on('message', text => addMessage(text))
@@ -24,21 +24,20 @@ socket.on('message', text => addMessage(text))
 //     <p class="msg_time"> 15:25</p>
 // </li>
 
-addMessage = msg => {
-    console.table(msg)
-   
+addMessage = msg => {    
     let msg_author = document.createElement('p')
     msg_author.classList.add('msg_author')
     msg_author.innerText = msg.author
-
+    
     let msg_body = document.createElement('p')
     msg_body.classList.add('msg_body')
     msg_body.innerText = msg.msg
-
+    
     let msg_time = document.createElement('p')
     msg_time.classList.add('msg_time')
-    msg_time.innerText = new Date(msg.time).getTime()
-
+    let time = new Date(msg.time)
+    msg_time.innerText = `${time.getHours().toString()}:${time.getMinutes().toString()}`
+    
     let msg_li = document.createElement('li')
     msg_li.classList.add('msg')
     msg_li.appendChild(msg_author)
@@ -46,9 +45,14 @@ addMessage = msg => {
     msg_li.appendChild(msg_time)
     
     container.appendChild(msg_li)
+    window.scrollBy(0, 250);
 }
 
 async function getMessage (callback) {
     let msg = await fetch('/msg')
     callback(await msg.json())
+}
+
+setUser = () => {
+    user.innerText = undefined
 }
