@@ -24,8 +24,6 @@ db.loadDatabase(err => {
     err ? console.log(err) : ""
 });
 
-
-
 // * Initalise
 serverSetup = () => {
     console.log(`Local Chat open at http://${ip.address()}:${25565}/`)
@@ -64,3 +62,4 @@ app.get('*', (req, res) => {
         root: path.join(localChatDir, './App/Html/')
     })
 })
+

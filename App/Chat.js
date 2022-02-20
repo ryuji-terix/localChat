@@ -12,20 +12,21 @@ document.querySelector('button').onclick = () => {
 }
 
 window.onload = () => {
-    console.log("set up")
+    getMessage((msg) => msg.forEach(el => addMessage(el)))
+
 }
 
 socket.on('message', text => addMessage(text))
 
+// <li class="msg">
+//     <p class="msg_author">Teo</p>
+//     <p class="msg_body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum natus autem consectetur. Sequi, optio cupiditate dignissimos dolor quisquam quis. Iusto obcaecati ratione inventore quam perferendis sed expedita! Placeat, quis consectetur?</p>
+//     <p class="msg_time"> 15:25</p>
+// </li>
+
 addMessage = msg => {
     console.table(msg)
-
-    // <li class="msg">
-    //     <p class="msg_author">Teo</p>
-    //     <p class="msg_body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum natus autem consectetur. Sequi, optio cupiditate dignissimos dolor quisquam quis. Iusto obcaecati ratione inventore quam perferendis sed expedita! Placeat, quis consectetur?</p>
-    //     <p class="msg_time"> 15:25</p>
-    // </li>
-    
+   
     let msg_author = document.createElement('p')
     msg_author.classList.add('msg_author')
     msg_author.innerText = msg.author
@@ -45,4 +46,9 @@ addMessage = msg => {
     msg_li.appendChild(msg_time)
     
     container.appendChild(msg_li)
+}
+
+async function getMessage (callback) {
+    let msg = await fetch('/msg')
+    callback(await msg.json())
 }

@@ -65,6 +65,11 @@ ul.msg_container {
     width: 75%; 
 }
 
+ul.msg_container:empty {
+    content: "Go ahed write something!";
+
+}
+
 li.msg {
     padding: 15px;
     margin: 25px;
