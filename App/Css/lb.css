@@ -19,7 +19,6 @@
 
 body {
     background-color: var(--lightblue);
-    height: 100%;
 }
 
 /* button stile */
@@ -87,5 +86,5 @@ input:invalid {
     font-size: clamp(60px, calc((75vw - 4.5rem) / 7), 150px);
     text-align: center;
     flex-basis: 100%;
-    margin: 0 15px 5px 15px;
+    /* margin: 0 15px 5px 15px; */
 }
