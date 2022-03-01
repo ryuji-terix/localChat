@@ -38,8 +38,8 @@ button:active {
 }
 
 
-/* input style */
-input {
+/* textarea style */
+textarea {
     outline: none;
     border: none;
     background-color: var(--semiTrasparent);
@@ -48,27 +48,27 @@ input {
 
 }
 
-input:hover {
+textarea:hover {
     box-shadow: var(--insetShadow)
 }
 
-input:focus-visible {
+textarea:focus-visible {
     box-shadow: var(--insetShadow)
 }
 
-input:focus {
+textarea:focus {
     border: 1.5px solid var(--softwhite);
 }
 
-input::placeholder {
+textarea::placeholder {
     opacity: 78%;
 }
 
-input.login:valid {
+textarea.login:valid {
     border: 2px solid rgb(0, 255, 0);
 }
 
-input:invalid {
+textarea:invalid {
     border: 2px solid rgb(255, 0, 0);
 }
 

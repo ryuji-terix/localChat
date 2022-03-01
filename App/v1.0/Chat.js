@@ -4,25 +4,44 @@ const inp = document.getElementById('input')
 const btn = document.getElementById('btn')
 const socket = io()
 
+var Username = socket.connected ? Username = socket.id.substring(0,2) : Username = undefined
+
 
 document.querySelector('button').onclick = () => {
-    const text = document.querySelector('input').value
-    socket.emit('message', text)
+    emitMsg()
+}
+
+onkeydown = (key) => {
+    key.key === 'Enter' ? emitMsg() : ''
+}
+
+emitMsg = () => {
+    let text = inp.value
+
+    if (text.length !== 0 && text.trim().length !== 0) {
+        socket.emit('message', text.trim())
+    }
+
+    // console.table( {length: text.length, trim: text.trim(), triml: text.trim().length});
     
+    inp.value = ''
 }
 
 window.onload = () => {
+    console.log(inp);
     getMessage((msg) => msg.forEach(el => addMessage(el)))
     setUser()
 }
 
-socket.on('message', text => addMessage(text))
+
 
 // <li class="msg">
 //     <p class="msg_author">Teo</p>
 //     <p class="msg_body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum natus autem consectetur. Sequi, optio cupiditate dignissimos dolor quisquam quis. Iusto obcaecati ratione inventore quam perferendis sed expedita! Placeat, quis consectetur?</p>
 //     <p class="msg_time"> 15:25</p>
 // </li>
+
+socket.on('message', text => addMessage(text))
 
 addMessage = msg => {    
     let msg_author = document.createElement('p')
@@ -54,5 +73,10 @@ async function getMessage (callback) {
 }
 
 setUser = () => {
-    user.innerText = undefined
+    user.innerText = Username
 }
+
+socket.on('connect', () => {
+    Username = socket.id.substring(0,3)
+    setUser()
+})

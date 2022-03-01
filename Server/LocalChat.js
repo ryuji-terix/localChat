@@ -35,7 +35,7 @@ io.on('connection', (socket) => {
 
     socket.on('message', (message) => {
         let entrance = {
-            author: socket.id.substr(0,2),
+            author: socket.id.substr(0,3),
             msg: message,
             time: Date.now()
         }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalChat | Chat</title>
+
+    <link rel="icon" type="image/x-icon" href="../LocalChat.ico">
+    <link rel="stylesheet" href="./Css/Chat.css">
+    <link rel="stylesheet" href="./Css/lb.css">
+
+    <script defer src="/socket.io/socket.io.js"></script>
+    <script defer src="./Chat.js"></script>
+</head>
+
+<body>
+    <nav class="top noselect">
+        <p class="user">User: <br>
+        <span class="username" id="username"></span></p>
+        <h1 class="title">Local Chat</h1>
+    </nav>
+    
+    <ul class="msg_container" id="msg_container">
+        <li class="msg">
+            <p class="msg_author">Teo</p>
+            <p class="msg_body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum natus autem consectetur. Sequi, optio cupiditate dignissimos dolor quisquam quis. Iusto obcaecati ratione inventore quam perferendis sed expedita! Placeat, quis consectetur?</p>
+            <p class="msg_time"> 15:25</p>
+        </li>
+        
+        <li class="msg">
+            <p class="msg_author">Teo</p>
+            <p class="msg_body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum natus autem consectetur. Sequi, optio cupiditate dignissimos dolor quisquam quis. Iusto obcaecati ratione inventore quam perferendis sed expedita! Placeat, quis consectetur?</p>
+            <p class="msg_time"> 15:25</p>
+        </li>
+    </ul>
+    
+    <nav class="btm">
+        <textarea class="sendMsg" id="input" placeholder="message"></textarea>
+        <button class="sendMsg noselect" id="btn">send</button>
+    </nav>
+</body>
+
+</html>
